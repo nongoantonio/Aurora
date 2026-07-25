@@ -1,5 +1,28 @@
-body {
+/* Definição de variáveis globais de cores e fontes para fácil manutenção */
+:root {
+  --bg-primary: #090d16;
+  --bg-secondary: #111827;
+  --bg-card: rgba(30, 41, 59, 0.7);
+  --accent-color: #8b5cf6; /* Violeta moderno */
+  --accent-gradient: linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%);
+  --text-main: #f3f4f6;
+  --text-muted: #9ca3af;
+  --border-color: rgba(255, 255, 255, 0.1);
+  font-family: 'Inter', sans-serif;
+}
+
+/* Reseta margens, preenchimentos e define o box-sizing universal */
+* {
   margin: 0;
   padding: 0;
-  background: #fff;
+  box-sizing: border-box;
+  scroll-behavior: smooth; /* Permite scroll suave ao clicar em links âncora */
+}
+
+/* Estilos base do corpo da página */
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-main);
+  overflow-x: hidden; /* Evita barra de rolagem horizontal indesejada */
+  line-height: 1.6;
 }
