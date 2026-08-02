@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useScrollReveal } from '../hooks/useScrollReveal';
+import { PlusIcon } from './Icons';
 
 const items = [
   {
@@ -38,7 +39,9 @@ function FaqItem({ q, a, index }: { q: string; a: string; index: number }) {
     >
       <button className="faq-item__question" onClick={() => setOpen((o) => !o)}>
         {q}
-        <span className="faq-item__icon">+</span>
+        <span className="faq-item__icon">
+          <PlusIcon size={14} />
+        </span>
       </button>
       <div className="faq-item__answer">
         <div className="faq-item__answer-inner">

@@ -1,4 +1,5 @@
 import { useScrollReveal } from '../hooks/useScrollReveal';
+import { CheckIcon } from './Icons';
 
 const plans = [
   {
@@ -61,7 +62,9 @@ function PlanCard({ plan, index }: { plan: (typeof plans)[number]; index: number
       <ul className="plan-card__features">
         {plan.features.map((f) => (
           <li key={f}>
-            <span className="check">✓</span>
+            <span className="check">
+              <CheckIcon size={13} />
+            </span>
             {f}
           </li>
         ))}
