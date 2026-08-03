@@ -115,34 +115,95 @@ export function CodeIcon({ size = 18, className }: IconProps) {
   );
 }
 
-let auroraLogoUid = 0;
+let auroraMarkUid = 0;
 
-export function AuroraLogo({ size = 26, className }: IconProps) {
-  const gradId = `aurora-mark-grad-${(auroraLogoUid++, auroraLogoUid)}`;
+/**
+ * Marca "A" da Aurora: duas hastes em gradiente (violeta / azul-ciano),
+ * uma fita diagonal a atravessar (a substituir a barra do "A"), um mini
+ * gráfico de barras na base e um brilho na ponta — inspirado no logótipo
+ * de referência fornecido.
+ */
+export function AuroraMark({ size = 28, className }: IconProps) {
+  const uid = ++auroraMarkUid;
+  const gLeft = `aurora-left-${uid}`;
+  const gRight = `aurora-right-${uid}`;
+  const gSwoosh = `aurora-swoosh-${uid}`;
+  const gBars = `aurora-bars-${uid}`;
 
   return (
-    <svg width={size} height={size} viewBox="0 0 32 32" className={className}>
+    <svg width={size} height={size} viewBox="0 0 100 100" className={className}>
       <defs>
-        <linearGradient id={gradId} x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#8b5cf6" />
-          <stop offset="100%" stopColor="#3b82f6" />
+        <linearGradient id={gLeft} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#a78bfa" />
+          <stop offset="100%" stopColor="#7c3aed" />
+        </linearGradient>
+        <linearGradient id={gRight} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#3b82f6" />
+          <stop offset="100%" stopColor="#22d3ee" />
+        </linearGradient>
+        <linearGradient id={gSwoosh} x1="0" y1="1" x2="1" y2="0">
+          <stop offset="0%" stopColor="#7c3aed" />
+          <stop offset="55%" stopColor="#3b82f6" />
+          <stop offset="100%" stopColor="#22d3ee" />
+        </linearGradient>
+        <linearGradient id={gBars} x1="0" y1="1" x2="0" y2="0">
+          <stop offset="0%" stopColor="#3b82f6" />
+          <stop offset="100%" stopColor="#22d3ee" />
         </linearGradient>
       </defs>
-      <rect width="32" height="32" rx="9" fill={`url(#${gradId})`} />
+
+      {/* hastes do "A" */}
+      <path d="M50 5 14 92h19L50 5Z" fill={`url(#${gLeft})`} />
+      <path d="M50 5 86 92H67L50 5Z" fill={`url(#${gRight})`} />
+
+      {/* mini gráfico de barras na base */}
+      <rect x="40" y="75" width="5.5" height="10" rx="1.4" fill={`url(#${gBars})`} />
+      <rect x="47.3" y="67" width="5.5" height="18" rx="1.4" fill={`url(#${gBars})`} />
+      <rect x="54.6" y="57" width="5.5" height="28" rx="1.4" fill={`url(#${gBars})`} />
+
+      {/* fita/swoosh diagonal */}
       <path
-        d="M5.5 20.5c2.4-6.5 5-6.5 7-1.5s4.6 5 7-1.5"
-        stroke="#fff"
-        strokeOpacity="0.55"
-        strokeWidth="2"
-        strokeLinecap="round"
+        d="M23 62c9 15 24 15 32-2 8-17 20-24 34-32"
         fill="none"
+        stroke={`url(#${gSwoosh})`}
+        strokeWidth="6.5"
+        strokeLinecap="round"
       />
+
+      {/* brilho na ponta */}
       <path
-        d="M5.5 24c2.4-5.5 5-5.5 7-1s4.6 4.5 7-1"
-        stroke="#fff"
-        strokeWidth="2.1"
+        d="M90 14 92.6 20 98.5 22.5 92.6 25 90 31 87.4 25 81.5 22.5 87.4 20Z"
+        fill="#67e8f9"
+      />
+    </svg>
+  );
+}
+
+/** Alias mantido por compatibilidade com código existente. */
+export const AuroraLogo = AuroraMark;
+
+export function SunIcon({ size = 18, className }: IconProps) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" className={className}>
+      <circle cx="12" cy="12" r="4.2" stroke="currentColor" strokeWidth="1.8" />
+      <path
+        d="M12 2.5v2.4M12 19.1v2.4M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7"
+        stroke="currentColor"
+        strokeWidth="1.8"
         strokeLinecap="round"
-        fill="none"
+      />
+    </svg>
+  );
+}
+
+export function MoonIcon({ size = 18, className }: IconProps) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" className={className}>
+      <path
+        d="M20.5 14.7A8.5 8.5 0 0 1 9.3 3.5a8.5 8.5 0 1 0 11.2 11.2Z"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinejoin="round"
       />
     </svg>
   );

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { MenuIcon, CloseIcon, AuroraLogo } from './Icons';
+import ThemeToggle from './ThemeToggle';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -40,6 +41,7 @@ export default function Navbar() {
         </nav>
 
         <div className="navbar__actions">
+          <ThemeToggle />
           <button className="btn btn--primary btn--sm" onClick={() => scrollTo('cta')}>
             Começar agora
           </button>
@@ -55,6 +57,10 @@ export default function Navbar() {
             {l.label}
           </button>
         ))}
+        <div className="navbar__mobile-theme">
+          <span>Tema</span>
+          <ThemeToggle />
+        </div>
       </div>
     </header>
   );
