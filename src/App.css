@@ -1071,8 +1071,9 @@
 .footer__brand {
   max-width: 280px;
 }
-.footer__brand .navbar__logo-mark {
+.footer__brand svg {
   margin-bottom: 0.9rem;
+  display: block;
 }
 .footer__brand p {
   color: var(--muted);

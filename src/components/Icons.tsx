@@ -115,6 +115,39 @@ export function CodeIcon({ size = 18, className }: IconProps) {
   );
 }
 
+let auroraLogoUid = 0;
+
+export function AuroraLogo({ size = 26, className }: IconProps) {
+  const gradId = `aurora-mark-grad-${(auroraLogoUid++, auroraLogoUid)}`;
+
+  return (
+    <svg width={size} height={size} viewBox="0 0 32 32" className={className}>
+      <defs>
+        <linearGradient id={gradId} x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stopColor="#8b5cf6" />
+          <stop offset="100%" stopColor="#3b82f6" />
+        </linearGradient>
+      </defs>
+      <rect width="32" height="32" rx="9" fill={`url(#${gradId})`} />
+      <path
+        d="M5.5 20.5c2.4-6.5 5-6.5 7-1.5s4.6 5 7-1.5"
+        stroke="#fff"
+        strokeOpacity="0.55"
+        strokeWidth="2"
+        strokeLinecap="round"
+        fill="none"
+      />
+      <path
+        d="M5.5 24c2.4-5.5 5-5.5 7-1s4.6 4.5 7-1"
+        stroke="#fff"
+        strokeWidth="2.1"
+        strokeLinecap="round"
+        fill="none"
+      />
+    </svg>
+  );
+}
+
 export function GlobeIcon({ size = 18, className }: IconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none" className={className}>

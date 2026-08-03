@@ -1,11 +1,11 @@
-import { XSocialIcon, LinkedinIcon, CodeIcon, GlobeIcon } from './Icons';
+import { XSocialIcon, LinkedinIcon, CodeIcon, GlobeIcon, AuroraLogo } from './Icons';
 
 export default function Footer() {
   return (
     <footer className="footer">
       <div className="footer__top">
         <div className="footer__brand">
-          <span className="navbar__logo-mark" />
+          <AuroraLogo size={28} />
           <p>Aurora Cloud — hospedagem, segurança e análise para o seu negócio digital.</p>
           <div className="footer__socials">
             <a href="#" aria-label="X (Twitter)"><XSocialIcon size={17} /></a>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { MenuIcon, CloseIcon } from './Icons';
+import { MenuIcon, CloseIcon, AuroraLogo } from './Icons';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -27,7 +27,7 @@ export default function Navbar() {
     <header className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`}>
       <div className="navbar__inner">
         <a href="#top" className="navbar__logo">
-          <span className="navbar__logo-mark" />
+          <AuroraLogo size={26} />
           Aurora
         </a>
 
