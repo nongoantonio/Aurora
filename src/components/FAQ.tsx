@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import { PlusIcon } from './Icons';
+import { buildWhatsAppLink } from '../config';
 
 const items = [
   {
@@ -58,7 +59,18 @@ export default function FAQ() {
       <div className="section__header">
         <span className="eyebrow">FAQ</span>
         <h2>Perguntas Frequentes</h2>
-        <p>Não encontrou o que procurava? Fale com a nossa equipa.</p>
+        <p>
+          Não encontrou o que procurava?{' '}
+          <a
+            href={buildWhatsAppLink('Olá! Tenho uma dúvida sobre a Aurora Cloud.')}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-link"
+          >
+            Fale com a nossa equipa
+          </a>
+          .
+        </p>
       </div>
 
       <div className="faq-list">

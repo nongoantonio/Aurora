@@ -1,5 +1,7 @@
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import { CheckIcon } from './Icons';
+import { useSignup } from '../context/SignupContext';
+import { buildWhatsAppLink } from '../config';
 
 const plans = [
   {
@@ -10,6 +12,7 @@ const plans = [
     features: ['1 domínio', '1GB de armazenamento', 'SSL grátis', 'Suporte via email'],
     cta: 'Criar conta grátis',
     highlight: false,
+    action: 'signup' as const,
   },
   {
     name: 'Pro',
@@ -25,6 +28,7 @@ const plans = [
     ],
     cta: 'Assinar Pro',
     highlight: true,
+    action: 'signup' as const,
   },
   {
     name: 'Enterprise',
@@ -39,11 +43,33 @@ const plans = [
     ],
     cta: 'Falar com vendas',
     highlight: false,
+    action: 'whatsapp' as const,
   },
 ];
 
-function PlanCard({ plan, index }: { plan: (typeof plans)[number]; index: number }) {
+function PlanCard({
+  plan,
+  index,
+  onSignup,
+}: {
+  plan: (typeof plans)[number];
+  index: number;
+  onSignup: (planName: string) => void;
+}) {
   const { ref, isVisible } = useScrollReveal<HTMLDivElement>();
+
+  const handleClick = () => {
+    if (plan.action === 'signup') {
+      onSignup(plan.name);
+    } else {
+      window.open(
+        buildWhatsAppLink(`Olá! Tenho interesse no plano Enterprise da Aurora Cloud.`),
+        '_blank',
+        'noopener,noreferrer'
+      );
+    }
+  };
+
   return (
     <div
       ref={ref}
@@ -69,7 +95,11 @@ function PlanCard({ plan, index }: { plan: (typeof plans)[number]; index: number
           </li>
         ))}
       </ul>
-      <button className={`btn ${plan.highlight ? 'btn--primary' : 'btn--outline'} btn--block`}>
+      <button
+        type="button"
+        className={`btn ${plan.highlight ? 'btn--primary' : 'btn--outline'} btn--block`}
+        onClick={handleClick}
+      >
         {plan.cta}
       </button>
     </div>
@@ -77,6 +107,8 @@ function PlanCard({ plan, index }: { plan: (typeof plans)[number]; index: number
 }
 
 export default function Pricing() {
+  const { openSignup } = useSignup();
+
   return (
     <section id="planos" className="section">
       <div className="section__header">
@@ -87,7 +119,7 @@ export default function Pricing() {
 
       <div className="pricing-grid">
         {plans.map((p, i) => (
-          <PlanCard key={p.name} plan={p} index={i} />
+          <PlanCard key={p.name} plan={p} index={i} onSignup={openSignup} />
         ))}
       </div>
 

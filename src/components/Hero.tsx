@@ -1,8 +1,10 @@
 import { useRef } from 'react';
 import { SparkleIcon, ArrowRightIcon, ZapIcon } from './Icons';
+import { useSignup } from '../context/SignupContext';
 
 export default function Hero() {
   const heroRef = useRef<HTMLElement>(null);
+  const { openSignup } = useSignup();
 
   const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
     const node = heroRef.current;
@@ -35,10 +37,10 @@ export default function Hero() {
           </p>
 
           <div className="hero__actions">
-            <a href="#planos" className="btn btn--primary">
+            <button type="button" className="btn btn--primary" onClick={() => openSignup()}>
               Começar agora
               <ArrowRightIcon size={16} className="btn__icon" />
-            </a>
+            </button>
             <a href="#recursos" className="btn btn--ghost">
               Ver recursos
             </a>

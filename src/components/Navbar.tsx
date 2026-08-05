@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
 import { MenuIcon, CloseIcon, AuroraLogo } from './Icons';
 import ThemeToggle from './ThemeToggle';
+import { useSignup } from '../context/SignupContext';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const { openSignup } = useSignup();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -42,7 +44,7 @@ export default function Navbar() {
 
         <div className="navbar__actions">
           <ThemeToggle />
-          <button className="btn btn--primary btn--sm" onClick={() => scrollTo('cta')}>
+          <button className="btn btn--primary btn--sm" onClick={() => openSignup()}>
             Começar agora
           </button>
           <button className="navbar__burger" onClick={() => setOpen((o) => !o)} aria-label="Abrir menu">

@@ -11,25 +11,33 @@ import Pricing from './components/Pricing';
 import FAQ from './components/FAQ';
 import CTA from './components/CTA';
 import Footer from './components/Footer';
+import WhatsAppButton from './components/WhatsAppButton';
+import { ToastProvider } from './context/ToastContext';
+import { SignupProvider } from './context/SignupContext';
 
 function App() {
   return (
-    <div className="app">
-      <ScrollProgress />
-      <Navbar />
-      <main>
-        <Hero />
-        <LogosStrip />
-        <Stats />
-        <Features />
-        <HowItWorks />
-        <Testimonials />
-        <Pricing />
-        <FAQ />
-        <CTA />
-      </main>
-      <Footer />
-    </div>
+    <ToastProvider>
+      <SignupProvider>
+        <div className="app">
+          <ScrollProgress />
+          <Navbar />
+          <main>
+            <Hero />
+            <LogosStrip />
+            <Stats />
+            <Features />
+            <HowItWorks />
+            <Testimonials />
+            <Pricing />
+            <FAQ />
+            <CTA />
+          </main>
+          <Footer />
+          <WhatsAppButton />
+        </div>
+      </SignupProvider>
+    </ToastProvider>
   );
 }
 
