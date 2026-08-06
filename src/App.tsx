@@ -7,6 +7,7 @@ import Stats from './components/Stats';
 import Features from './components/Features';
 import HowItWorks from './components/HowItWorks';
 import Testimonials from './components/Testimonials';
+import About from './components/About';
 import Pricing from './components/Pricing';
 import FAQ from './components/FAQ';
 import CTA from './components/CTA';
@@ -29,6 +30,7 @@ function App() {
             <Features />
             <HowItWorks />
             <Testimonials />
+            <About />
             <Pricing />
             <FAQ />
             <CTA />

@@ -22,6 +22,7 @@ export default function Navbar() {
   const links = [
     { id: 'recursos', label: 'Recursos' },
     { id: 'como-funciona', label: 'Como funciona' },
+    { id: 'sobre', label: 'Sobre nós' },
     { id: 'planos', label: 'Planos' },
     { id: 'faq', label: 'FAQ' },
   ];

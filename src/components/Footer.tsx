@@ -1,5 +1,5 @@
 import type { MouseEvent } from 'react';
-import { XSocialIcon, LinkedinIcon, CodeIcon, GlobeIcon, AuroraLogo } from './Icons';
+import { XSocialIcon, LinkedinIcon, CodeIcon, WhatsAppIcon, AuroraLogo } from './Icons';
 import { useToast } from '../context/ToastContext';
 import { buildMailtoLink, buildWhatsAppLink } from '../config';
 
@@ -42,22 +42,23 @@ export default function Footer() {
           <AuroraLogo size={28} />
           <p>Aurora Cloud — hospedagem, segurança e análise para o seu negócio digital.</p>
           <div className="footer__socials">
-            <a href="#" aria-label="X (Twitter)" onClick={comingSoon('X (Twitter)')}>
-              <XSocialIcon size={17} />
+            <a href="#" aria-label="X (Twitter)" className="social--x" onClick={comingSoon('X (Twitter)')}>
+              <XSocialIcon size={16} />
             </a>
-            <a href="#" aria-label="LinkedIn" onClick={comingSoon('LinkedIn')}>
-              <LinkedinIcon size={17} />
+            <a href="#" aria-label="LinkedIn" className="social--linkedin" onClick={comingSoon('LinkedIn')}>
+              <LinkedinIcon size={16} />
             </a>
-            <a href="#recursos" aria-label="Documentação" onClick={scrollTo('recursos')}>
-              <CodeIcon size={17} />
+            <a href="#recursos" aria-label="Documentação" className="social--docs" onClick={scrollTo('recursos')}>
+              <CodeIcon size={16} />
             </a>
             <a
               href={buildWhatsAppLink('Olá! Vim através do site da Aurora Cloud.')}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Falar no WhatsApp"
+              className="social--whatsapp"
             >
-              <GlobeIcon size={17} />
+              <WhatsAppIcon size={16} />
             </a>
           </div>
         </div>
@@ -72,7 +73,7 @@ export default function Footer() {
           </div>
           <div>
             <h4>Empresa</h4>
-            <a href="#" onClick={comingSoon('Sobre nós')}>Sobre nós</a>
+            <a href="#sobre" onClick={scrollTo('sobre')}>Sobre nós</a>
             <a href="#" onClick={comingSoon('Carreiras')}>Carreiras</a>
             <a href="#" onClick={openContact}>Contacto</a>
           </div>

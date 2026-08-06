@@ -91,18 +91,56 @@ export function CloseIcon({ size = 22, className }: IconProps) {
 
 export function XSocialIcon({ size = 18, className }: IconProps) {
   return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" className={className}>
-      <path d="M4 4l16 16M20 4 4 20" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" className={className}>
+      <path d="M13.6 10.6 20.4 3h-1.9l-5.9 6.6L8 3H3l7.1 10L3 21h1.9l6.2-7 5 7h5l-7.3-10.4Zm-2.2 2.5-.7-1L5 4.6h2.3l4.6 6.4.7 1 6 8.4h-2.3l-4.9-6.9Z" />
     </svg>
   );
 }
 
 export function LinkedinIcon({ size = 18, className }: IconProps) {
   return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" className={className}>
+      <path d="M4.98 3.5a2 2 0 1 1 0 4 2 2 0 0 1 0-4ZM3.3 8.9h3.4V21H3.3V8.9ZM9.5 8.9h3.26v1.66h.05c.45-.86 1.56-1.76 3.22-1.76 3.44 0 4.08 2.27 4.08 5.22V21h-3.4v-5.4c0-1.29-.02-2.95-1.8-2.95-1.8 0-2.08 1.4-2.08 2.85V21H9.5V8.9Z" />
+    </svg>
+  );
+}
+
+export function WhatsAppIcon({ size = 18, className }: IconProps) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" className={className}>
+      <path d="M12 3.5a8.4 8.4 0 0 0-7.2 12.7L3.5 20.5l4.4-1.3A8.4 8.4 0 1 0 12 3.5Zm0 1.6a6.8 6.8 0 1 1-3.5 12.6l-.25-.15-2.6.77.78-2.53-.16-.26A6.8 6.8 0 0 1 12 5.1Z" />
+      <path d="M9 8.6c.2-.5.4-.5.6-.5h.5c.15 0 .35 0 .5.4.2.5.6 1.6.7 1.7.1.15.15.3.05.5-.1.2-.15.3-.3.45-.15.15-.3.3-.4.4-.15.15-.3.3-.15.55.15.25.7 1.15 1.5 1.85 1 .9 1.85 1.2 2.1 1.35.25.15.4.1.55-.05.15-.15.6-.7.75-.95.15-.25.3-.2.5-.1.2.05 1.3.6 1.5.7.2.1.35.15.4.25.05.1.05.55-.15 1.1-.2.5-1.15 1-1.6 1.05-.4.05-.9.1-3-.8-2.55-1.1-4.15-3.6-4.3-3.8-.15-.2-1-1.3-1-2.5s.6-1.75.85-2Z" />
+    </svg>
+  );
+}
+
+export function CloudLockIcon({ size = 22, className }: IconProps) {
+  return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none" className={className}>
-      <rect x="3" y="3" width="18" height="18" rx="4" stroke="currentColor" strokeWidth="1.6" />
-      <circle cx="8" cy="8.5" r="1.1" fill="currentColor" />
-      <path d="M8 11.5v6M12 17.5v-3.5c0-1.4 1-2.5 2.4-2.5s2.1 1.1 2.1 2.5v3.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+      <path
+        d="M7 17.5a4 4 0 0 1-.5-7.97 5 5 0 0 1 9.62-1.9A4.5 4.5 0 0 1 17.5 16"
+        stroke="currentColor"
+        strokeWidth="1.7"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <rect x="9.3" y="14.2" width="6.4" height="5.3" rx="1.3" stroke="currentColor" strokeWidth="1.6" />
+      <path d="M10.7 14.2v-1.4a1.8 1.8 0 1 1 3.6 0v1.4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+export function PeopleIcon({ size = 22, className }: IconProps) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" className={className}>
+      <circle cx="9" cy="8.2" r="2.8" stroke="currentColor" strokeWidth="1.7" />
+      <path d="M3.6 19c.5-3 2.7-4.7 5.4-4.7s4.9 1.7 5.4 4.7" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
+      <path
+        d="M15.2 6c1.3.3 2.3 1.5 2.3 2.9 0 1.3-.85 2.4-2.05 2.8M17.8 14.6c2.1.5 3.6 1.9 4 4.4"
+        stroke="currentColor"
+        strokeWidth="1.7"
+        strokeLinecap="round"
+      />
     </svg>
   );
 }
