@@ -120,18 +120,6 @@ A página apresenta:
 - Criar interfaces modernas
 - Melhorar habilidades em Front-end
 
----
-
-## 📈 Melhorias futuras
-
-- [ ] Dark/Light Mode
-- [ ] Animações com Framer Motion
-- [ ] Integração com API
-- [ ] Dashboard funcional
-- [ ] Login
-- [ ] Cadastro
-- [ ] Internacionalização (i18n)
-- [ ] Testes automatizados
 
 ---
 
