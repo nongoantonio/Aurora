@@ -1,12 +1,13 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import './index.css'
 import App from './App.tsx'
-import './index.css' // Estilos globais
-import './App.css' // Estilos específicos da aplicação
+import { initAnalytics } from './lib/analytics'
 
-// Renderiza o componente principal App dentro do elemento com id 'root'
-ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
+initAnalytics();
+
+createRoot(document.getElementById('root')!).render(
+  <StrictMode>
     <App />
-  </React.StrictMode>,
+  </StrictMode>,
 )

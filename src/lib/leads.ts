@@ -1,3 +1,5 @@
+import { FORMSPREE_ENDPOINT } from '../config';
+
 export interface Lead {
   name: string;
   email: string;
@@ -10,35 +12,35 @@ const STORAGE_KEY = 'aurora-leads';
 /**
  * Processa um novo pedido de conta / contacto de vendas.
  *
- * Este site é 100% estático (sem servidor próprio), por isso, por agora,
- * o pedido é guardado localmente no navegador do visitante — o suficiente
- * para o formulário validar, responder e dar feedback real ao utilizador.
+ * Se FORMSPREE_ENDPOINT estiver preenchido em src/config.ts, o pedido é
+ * enviado a sério (chega ao seu email/painel do Formspree). Caso contrário,
+ * fica em modo demonstração: guardado apenas no navegador do visitante —
+ * o suficiente para o formulário validar, responder e dar feedback real.
  *
- * PARA RECEBER OS PEDIDOS A SÉRIO (no seu email/CRM), troque o conteúdo
- * desta função por uma chamada a um serviço real. Duas opções simples,
- * sem precisar de construir um backend:
+ * Quer usar outro serviço (Supabase, backend próprio, etc.)? Substitua o
+ * bloco "if (FORMSPREE_ENDPOINT)" abaixo por um fetch para o seu endpoint:
  *
- * 1) Formspree (grátis até 50 envios/mês) — crie uma conta em
- *    https://formspree.io, crie um formulário e substitua:
- *
- *      await fetch('https://formspree.io/f/SEU_FORM_ID', {
- *        method: 'POST',
- *        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
- *        body: JSON.stringify(lead),
- *      });
- *
- * 2) Supabase / API própria — faça um POST para o seu endpoint:
- *
- *      await fetch('https://SEU-BACKEND.com/api/leads', {
- *        method: 'POST',
- *        headers: { 'Content-Type': 'application/json' },
- *        body: JSON.stringify(lead),
- *      });
+ *   await fetch('https://SEU-BACKEND.com/api/leads', {
+ *     method: 'POST',
+ *     headers: { 'Content-Type': 'application/json' },
+ *     body: JSON.stringify(lead),
+ *   });
  */
 export async function submitLead(lead: Lead): Promise<void> {
-  // Simula a latência de uma chamada de rede real.
-  await new Promise((resolve) => setTimeout(resolve, 850));
+  if (FORMSPREE_ENDPOINT) {
+    const response = await fetch(FORMSPREE_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify(lead),
+    });
+    if (!response.ok) {
+      throw new Error(`Formspree respondeu com o estado ${response.status}`);
+    }
+    return;
+  }
 
+  // Modo demonstração — sem FORMSPREE_ENDPOINT configurado.
+  await new Promise((resolve) => setTimeout(resolve, 850)); // simula latência de rede
   try {
     const existing: Lead[] = JSON.parse(window.localStorage.getItem(STORAGE_KEY) || '[]');
     existing.push(lead);
@@ -48,7 +50,7 @@ export async function submitLead(lead: Lead): Promise<void> {
   }
 }
 
-/** Útil para depuração: devolve todos os pedidos guardados localmente. */
+/** Útil para depuração: devolve todos os pedidos guardados localmente (modo demonstração). */
 export function getStoredLeads(): Lead[] {
   try {
     return JSON.parse(window.localStorage.getItem(STORAGE_KEY) || '[]');

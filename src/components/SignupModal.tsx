@@ -1,8 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 import type { FormEvent } from 'react';
+import { Link } from 'react-router-dom';
 import { CloseIcon, CheckIcon } from './Icons';
 import { submitLead } from '../lib/leads';
 import { useToast } from '../context/ToastContext';
+import { trackEvent } from '../lib/analytics';
 
 interface SignupModalProps {
   isOpen: boolean;
@@ -23,14 +25,36 @@ export default function SignupModal({ isOpen, plan, onClose }: SignupModalProps)
   const dialogRef = useRef<HTMLDivElement>(null);
   const firstFieldRef = useRef<HTMLInputElement>(null);
 
-  // Bloqueia o scroll do fundo e fecha com Escape enquanto o modal está aberto.
+  // Bloqueia o scroll do fundo, fecha com Escape e mantém o foco preso
+  // dentro do modal (Tab/Shift+Tab não saem para o resto da página).
   useEffect(() => {
     if (!isOpen) return;
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
+
     const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose();
+      if (e.key === 'Escape') {
+        onClose();
+        return;
+      }
+      if (e.key !== 'Tab' || !dialogRef.current) return;
+
+      const focusable = dialogRef.current.querySelectorAll<HTMLElement>(
+        'button, a[href], input, [tabindex]:not([tabindex="-1"])'
+      );
+      if (focusable.length === 0) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
     };
+
     window.addEventListener('keydown', onKeyDown);
     firstFieldRef.current?.focus();
     return () => {
@@ -66,6 +90,7 @@ export default function SignupModal({ isOpen, plan, onClose }: SignupModalProps)
     try {
       await submitLead({ name: name.trim(), email: email.trim(), plan, createdAt: new Date().toISOString() });
       setStatus('success');
+      trackEvent('generate_lead', { plan: plan || 'default' });
       showToast('Pedido recebido — verifique o seu email em breve.');
     } catch {
       setStatus('idle');
@@ -124,7 +149,11 @@ export default function SignupModal({ isOpen, plan, onClose }: SignupModalProps)
                 />
               </label>
 
-              {error && <p className="modal__error">{error}</p>}
+              {error && (
+                <p className="modal__error" role="alert">
+                  {error}
+                </p>
+              )}
 
               <button className="btn btn--primary btn--block" type="submit" disabled={status === 'submitting'}>
                 {status === 'submitting' ? (
@@ -136,7 +165,17 @@ export default function SignupModal({ isOpen, plan, onClose }: SignupModalProps)
                 )}
               </button>
 
-              <p className="modal__legal">Ao continuar, aceita os Termos de Serviço e a Política de Privacidade.</p>
+              <p className="modal__legal">
+                Ao continuar, aceita os{' '}
+                <Link to="/termos-de-servico" onClick={onClose}>
+                  Termos de Serviço
+                </Link>{' '}
+                e a{' '}
+                <Link to="/politica-de-privacidade" onClick={onClose}>
+                  Política de Privacidade
+                </Link>
+                .
+              </p>
             </form>
           </>
         )}

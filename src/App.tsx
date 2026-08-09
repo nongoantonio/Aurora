@@ -1,45 +1,26 @@
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
-import ScrollProgress from './components/ScrollProgress';
-import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import LogosStrip from './components/LogosStrip';
-import Stats from './components/Stats';
-import Features from './components/Features';
-import HowItWorks from './components/HowItWorks';
-import Testimonials from './components/Testimonials';
-import About from './components/About';
-import Pricing from './components/Pricing';
-import FAQ from './components/FAQ';
-import CTA from './components/CTA';
-import Footer from './components/Footer';
-import WhatsAppButton from './components/WhatsAppButton';
+import ScrollToTop from './components/ScrollToTop';
+import LandingPage from './pages/LandingPage';
+import TermsPage from './pages/TermsPage';
+import PrivacyPage from './pages/PrivacyPage';
 import { ToastProvider } from './context/ToastContext';
 import { SignupProvider } from './context/SignupContext';
 
 function App() {
   return (
-    <ToastProvider>
-      <SignupProvider>
-        <div className="app">
-          <ScrollProgress />
-          <Navbar />
-          <main>
-            <Hero />
-            <LogosStrip />
-            <Stats />
-            <Features />
-            <HowItWorks />
-            <Testimonials />
-            <About />
-            <Pricing />
-            <FAQ />
-            <CTA />
-          </main>
-          <Footer />
-          <WhatsAppButton />
-        </div>
-      </SignupProvider>
-    </ToastProvider>
+    <BrowserRouter>
+      <ToastProvider>
+        <SignupProvider>
+          <ScrollToTop />
+          <Routes>
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/termos-de-servico" element={<TermsPage />} />
+            <Route path="/politica-de-privacidade" element={<PrivacyPage />} />
+          </Routes>
+        </SignupProvider>
+      </ToastProvider>
+    </BrowserRouter>
   );
 }
 

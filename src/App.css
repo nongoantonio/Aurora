@@ -1176,6 +1176,114 @@
 }
 
 /* ====================== FOCUS STATES ====================== */
+/* ====================== PÁGINAS LEGAIS ====================== */
+.legal-page {
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+}
+.legal-page__header {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 1.8rem 1.5rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.legal-page__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+.legal-page__back:hover {
+  color: var(--text);
+}
+.legal-page__back-icon {
+  transform: rotate(180deg);
+}
+.legal-page__content {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.legal-page__content h1 {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  font-weight: 800;
+  margin: 0.8rem 0 0.5rem;
+}
+.legal-page__updated {
+  color: var(--muted);
+  font-size: 0.88rem;
+  margin-bottom: 2.2rem;
+}
+.legal-page__notice {
+  background: rgba(245, 158, 11, 0.1);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  color: var(--text);
+  border-radius: 14px;
+  padding: 1rem 1.2rem;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+.legal-page__notice strong {
+  color: #f59e0b;
+}
+.legal-page__body {
+  color: var(--muted);
+  font-size: 0.98rem;
+  line-height: 1.75;
+}
+.legal-page__body h2 {
+  font-family: var(--font-display);
+  color: var(--text);
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: 2.2rem 0 0.8rem;
+}
+.legal-page__body p {
+  margin-bottom: 1rem;
+}
+.legal-page__body ul {
+  margin: 0 0 1rem;
+  padding-left: 1.3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.legal-page__body li {
+  list-style: disc;
+}
+.legal-page__body strong {
+  color: var(--text);
+}
+.legal-page__body a {
+  color: var(--violet);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.skip-link {
+  position: fixed;
+  top: -60px;
+  left: 12px;
+  z-index: 300;
+  background: var(--violet);
+  color: #fff;
+  padding: 0.75rem 1.2rem;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: top 0.2s ease;
+}
+.skip-link:focus {
+  top: 12px;
+}
 a:focus-visible,
 button:focus-visible {
   outline: 2px solid var(--violet);
