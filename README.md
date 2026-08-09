@@ -1,136 +1,57 @@
-# 🚀 Aurora
+# Aurora Cloud — landing page
 
-> Evolua a sua presença digital com inteligência.
+Site estático (React + Vite), pronto a publicar. Antes de ir ao ar, siga esta lista.
 
-Uma Landing Page moderna desenvolvida com **React**, **TypeScript** e **Vite**, focada em performance, design responsivo e experiência do usuário.
+## 1. Configuração obrigatória — `src/config.ts`
 
-![Aurora Preview](./public/preview.png)
+| Valor | O que fazer |
+|---|---|
+| `WHATSAPP_NUMBER` | Troque pelo número real, formato internacional sem "+" (ex: `244923000000`). |
+| `CONTACT_EMAIL` | Email real para onde o botão "Contacto" do rodapé escreve. |
+| `FORMSPREE_ENDPOINT` | Crie uma conta grátis em [formspree.io](https://formspree.io), crie um formulário e cole o endpoint aqui. Sem isto, os pedidos de conta ficam só guardados no navegador do visitante (modo demonstração). |
 
----
+Em desenvolvimento (`npm run dev`), a consola do browser avisa se algum destes ainda estiver por preencher.
 
-## 📖 Sobre o projeto
-
-Aurora é uma landing page criada para apresentar uma plataforma de hospedagem, proteção e análise de websites.
-
-O objetivo é oferecer uma interface moderna, elegante e intuitiva para demonstrar os principais recursos da plataforma, incentivando novos usuários a conhecerem o serviço.
-
----
-
-## ✨ Funcionalidades
-
-- 🎨 Interface moderna
-- ⚡ Alto desempenho com Vite
-- 📱 Layout totalmente responsivo
-- 🌙 Tema escuro
-- 🎯 Botões com animações
-- 📊 Dashboard ilustrativo
-- 🖥️ Navegação simples
-- ♻️ Componentização com React
-- 🔥 Desenvolvido com TypeScript
-
----
-
-## 🛠️ Tecnologias
-
-- React
-- TypeScript
-- Vite
-- CSS3
-- HTML5
-
----
-
-## 📂 Estrutura do Projeto
-
-```
-Aurora/
-│
-├── public/
-│   └── preview.png
-│
-├── src/
-│   ├── assets/
-│   ├── components/
-│   ├── pages/
-│   ├── styles/
-│   ├── App.tsx
-│   └── main.tsx
-│
-├── package.json
-├── tsconfig.json
-├── vite.config.ts
-└── README.md
-```
-
----
-
-## 🚀 Como executar
-
-### Clone o repositório
+## 2. Analytics (opcional) — `.env`
 
 ```bash
-git clone https://github.com/seu-usuario/aurora.git
+cp .env.example .env
 ```
 
-### Entre na pasta
+Preencha `VITE_GA_MEASUREMENT_ID` com o ID do Google Analytics 4 (`G-XXXXXXXXXX`). Sem isto, o site funciona normalmente sem analytics — nada é carregado.
 
-```bash
-cd aurora
-```
+## 3. Conteúdo a rever antes de publicar — `src/content.ts`
 
-### Instale as dependências
+As estatísticas ("12.000 empresas", "99.9% uptime") e os 3 depoimentos são **placeholders de design**, não factos reais. Troque por números e citações verdadeiras (com autorização de quem for citado) — ou remova as secções `Stats`/`Testimonials` da `src/pages/LandingPage.tsx` até ter dados reais.
+
+## 4. Termos de Serviço e Política de Privacidade
+
+`src/pages/TermsPage.tsx` e `PrivacyPage.tsx` contêm um modelo genérico, sinalizado com um aviso amarelo na própria página. **Não substitui aconselhamento jurídico** — peça a um advogado para rever antes de publicar, e preencha os campos entre `[colchetes]` (nome legal da empresa, morada, NIF).
+
+## 5. Domínio real — SEO
+
+Depois de ter o domínio definitivo, troque `https://www.aurora.co.ao` pelo domínio real em:
+- `index.html` (tags `canonical`, `og:*`, `twitter:*`)
+- `public/robots.txt`
+- `public/sitemap.xml`
+
+O `public/og-image.png` (1200×630) já está pronto para a pré-visualização ao partilhar o link no WhatsApp/Facebook/LinkedIn.
+
+## 6. Deploy
+
+O site usa rotas reais (`/termos-de-servico`, `/politica-de-privacidade`), por isso o servidor precisa de redirecionar tudo para `index.html`:
+
+- **Netlify**: já incluído em `public/_redirects`.
+- **Vercel**: já incluído em `vercel.json`.
+- Outro host estático: configure um *rewrite* equivalente para SPA.
 
 ```bash
 npm install
+npm run build   # gera a pasta dist/
 ```
 
-### Execute o projeto
+## O que ainda não está incluído
 
-```bash
-npm run dev
-```
-
-Abra no navegador:
-
-```
-http://localhost:5173
-```
-
----
-
-## 📸 Preview
-
-A página apresenta:
-
-- Logo Aurora
-- Menu de navegação
-- Hero Section
-- Botões de ação
-- Cartão ilustrativo de estatísticas
-- Layout moderno em tons escuros
-- Destaques em roxo e azul
-
----
-
-## 🎯 Objetivos
-
-- Aprender React
-- Praticar TypeScript
-- Aprender componentização
-- Criar interfaces modernas
-- Melhorar habilidades em Front-end
-
-
----
-
-## 👨‍💻 Desenvolvedor
-
-Desenvolvido por **Dark Shadow** utilizando React + TypeScript + Vite.
-
----
-
-## 📄 Licença
-
-Este projeto está sob a licença MIT.
-
-Sinta-se livre para estudar, modificar e contribuir.
+- **Produto real por trás do formulário** — o painel "painel-aurora.com" no hero é uma maquete visual, não um produto funcional.
+- **Multi-idioma** — o site está só em português.
+- **Testes em Safari/Firefox reais e em dispositivos físicos** — foi testado em Chromium automatizado; vale a pena confirmar manualmente antes de publicar.
