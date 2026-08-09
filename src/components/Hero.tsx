@@ -1,6 +1,7 @@
 import { useRef } from 'react';
-import { SparkleIcon, ArrowRightIcon, ZapIcon } from './Icons';
+import { ArrowRightIcon, ZapIcon } from './Icons';
 import { useSignup } from '../context/SignupContext';
+import { HERO_TRUST_LABEL } from '../content';
 
 export default function Hero() {
   const heroRef = useRef<HTMLElement>(null);
@@ -22,11 +23,6 @@ export default function Hero() {
 
       <div className="hero__grid">
         <div className="hero__content">
-          <span className="badge badge--anim">
-            <SparkleIcon size={14} />
-            Nova versão 3.0 disponível
-          </span>
-
           <h1 className="hero__title">
             Evolua a sua presença digital com <span className="text-gradient">inteligência</span>
           </h1>
@@ -53,7 +49,7 @@ export default function Hero() {
               <span style={{ background: '#f59e0b' }}>AS</span>
               <span style={{ background: '#22c55e' }}>+</span>
             </div>
-            <p>Junte-se a mais de 12.000 empresas já a crescer com a Aurora</p>
+            <p>{HERO_TRUST_LABEL}</p>
           </div>
         </div>
 
