@@ -88,6 +88,18 @@ O routing exige redirecionar todos os caminhos para `index.html`:
 - **Vercel** → já incluído em `vercel.json`
 - Outro host estático → configurar um *rewrite* equivalente para SPA
 
+### GitHub Pages
+
+O repositório já vem com um workflow (`.github/workflows/deploy.yml`) que faz o build e publica automaticamente a cada `git push` para `main`. Passos únicos, a fazer uma vez:
+
+1. No GitHub, vai a **Settings → Pages** do repositório e em "Source" escolhe **GitHub Actions**.
+2. Faz `git push` para `main` — o Actions trata do resto (o `--base` do build é calculado automaticamente a partir do nome do repositório).
+3. Ao fim de ~1 minuto, o site fica disponível em `https://SEU-UTILIZADOR.github.io/NOME-DO-REPOSITORIO/`.
+
+GitHub Pages não sabe lidar nativamente com as rotas da aplicação (`/termos-de-servico`, etc.) — por isso o projeto já inclui `public/404.html`, que redireciona de volta para a rota certa sem o visitante notar. Isto já está tratado; não precisas de fazer mais nada.
+
+Se mais tarde ligares um **domínio próprio** ao GitHub Pages, edita `.github/workflows/deploy.yml` e muda `--base=/${{ github.event.repository.name }}/` para `--base=/`.
+
 ## Limitações conhecidas
 
 - O painel mostrado no hero é uma maquete visual, não um produto funcional

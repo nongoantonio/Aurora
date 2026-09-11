@@ -9,7 +9,7 @@ import { SignupProvider } from './context/SignupContext';
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={import.meta.env.BASE_URL}>
       <ToastProvider>
         <SignupProvider>
           <ScrollToTop />
