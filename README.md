@@ -1,24 +1,49 @@
+<div align="center">
+
 # Aurora Cloud
 
-Landing page de um produto SaaS de hospedagem, segurança e análise de tráfego — construída com React, TypeScript e Vite. Inclui modo claro/escuro, formulário de captação de leads, integração com WhatsApp, páginas legais e SEO completo.
+**Landing page para uma plataforma SaaS de hospedagem, segurança e análise de tráfego.**
+
+[![Deploy](https://github.com/nongoantonio/Aurora/actions/workflows/deploy.yml/badge.svg)](https://github.com/nongoantonio/Aurora/actions/workflows/deploy.yml)
+![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-8-646CFF?logo=vite&logoColor=white)
+![License](https://img.shields.io/badge/license-proprietary-lightgrey)
+
+[**🔗 Ver o site publicado**](https://nongoantonio.github.io/Aurora/)
 
 ![Preview do site Aurora Cloud](./public/preview.png)
 
+</div>
+
 ---
+
+## Índice
+
+- [Funcionalidades](#-funcionalidades)
+- [Stack técnica](#️-stack-técnica)
+- [Começar](#-começar)
+- [Configuração antes de publicar](#️-configuração-antes-de-publicar)
+- [Estrutura do projeto](#-estrutura-do-projeto)
+- [Conteúdo a rever antes de publicar](#-conteúdo-a-rever-antes-de-publicar)
+- [Deploy](#-deploy)
+- [Limitações conhecidas](#limitações-conhecidas)
+- [Licença](#licença)
 
 ## ✨ Funcionalidades
 
-- **Design responsivo** com modo claro/escuro (persistido e sincronizado com a preferência do sistema)
+- **Design responsivo** com modo claro/escuro, persistido e sincronizado com a preferência do sistema
 - **Animações on-scroll**, gráfico animado, marquee de logótipos e mockup de painel interativo
 - **Modal de inscrição** com validação de formulário, estado de carregamento e feedback de sucesso
-- **Integração com WhatsApp** (botão flutuante + links de contacto pré-preenchidos)
-- **Captação de leads** pronta a ligar ao [Formspree](https://formspree.io) (ou a qualquer backend próprio)
+- **Integração com WhatsApp** — botão flutuante e links de contacto pré-preenchidos
+- **Captação de leads** pronta a ligar ao [Formspree](https://formspree.io) ou a qualquer backend próprio
 - **Google Analytics 4** opcional, carregado apenas se configurado
-- **Páginas legais** (Termos de Serviço e Política de Privacidade) com routing próprio via `react-router-dom`
-- **SEO completo**: meta tags, Open Graph, Twitter Card, `sitemap.xml`, `robots.txt`
-- **Acessibilidade**: link "saltar para conteúdo", foco preso no modal, navegação por teclado
+- **Páginas legais** (Termos de Serviço e Política de Privacidade) com routing próprio
+- **SEO completo** — meta tags, Open Graph, Twitter Card, `sitemap.xml`, `robots.txt`
+- **Acessibilidade** — link "saltar para conteúdo", foco preso no modal, navegação por teclado
+- **CI/CD** — deploy automático para o GitHub Pages a cada `push` para `main`
 
-## 🛠️ Stack
+## 🛠️ Stack técnica
 
 | Camada | Tecnologia |
 |---|---|
@@ -27,6 +52,7 @@ Landing page de um produto SaaS de hospedagem, segurança e análise de tráfego
 | Routing | React Router DOM |
 | Estilos | CSS puro (variáveis nativas, sem framework) |
 | Ícones | SVG próprios (`src/components/Icons.tsx`) |
+| CI/CD | GitHub Actions → GitHub Pages |
 
 ## 🚀 Começar
 
@@ -52,7 +78,7 @@ export const CONTACT_EMAIL = 'contacto@aurora.co.ao';
 export const FORMSPREE_ENDPOINT = '';             // colar o endpoint do Formspree
 ```
 
-Em modo de desenvolvimento, a consola do browser avisa se algum destes valores ainda estiver por preencher.
+Em desenvolvimento, a consola do browser avisa se algum destes valores ainda estiver por preencher.
 
 Para o Google Analytics 4 (opcional):
 
@@ -76,32 +102,36 @@ src/
 
 ## 📝 Conteúdo a rever antes de publicar
 
-- `src/content.ts` — estatísticas e depoimentos são **placeholders de design**, não factos reais
-- `src/pages/TermsPage.tsx` / `PrivacyPage.tsx` — modelo legal genérico, sinalizado na própria página; não substitui aconselhamento jurídico
-- `index.html`, `public/robots.txt`, `public/sitemap.xml` — trocar `https://www.aurora.co.ao` pelo domínio real assim que o tiver
+| Ficheiro | Motivo |
+|---|---|
+| `src/content.ts` | Estatísticas e depoimentos são placeholders de design, não factos reais |
+| `src/pages/TermsPage.tsx` / `PrivacyPage.tsx` | Modelo legal genérico — não substitui aconselhamento jurídico |
+| `index.html`, `robots.txt`, `sitemap.xml` | Trocar `https://www.aurora.co.ao` pelo domínio real |
 
 ## 🌐 Deploy
 
-O routing exige redirecionar todos os caminhos para `index.html`:
+O routing da aplicação exige redirecionar todos os caminhos para `index.html`:
 
-- **Netlify** → já incluído em `public/_redirects`
-- **Vercel** → já incluído em `vercel.json`
-- Outro host estático → configurar um *rewrite* equivalente para SPA
+| Plataforma | Configuração |
+|---|---|
+| **GitHub Pages** | Já automatizado via `.github/workflows/deploy.yml` — basta ativar em *Settings → Pages → Source → GitHub Actions* |
+| **Netlify** | Já incluído em `public/_redirects` |
+| **Vercel** | Já incluído em `vercel.json` |
 
-### GitHub Pages
-
-O repositório já vem com um workflow (`.github/workflows/deploy.yml`) que faz o build e publica automaticamente a cada `git push` para `main`. Passos únicos, a fazer uma vez:
-
-1. No GitHub, vai a **Settings → Pages** do repositório e em "Source" escolhe **GitHub Actions**.
-2. Faz `git push` para `main` — o Actions trata do resto (o `--base` do build é calculado automaticamente a partir do nome do repositório).
-3. Ao fim de ~1 minuto, o site fica disponível em `https://SEU-UTILIZADOR.github.io/NOME-DO-REPOSITORIO/`.
-
-GitHub Pages não sabe lidar nativamente com as rotas da aplicação (`/termos-de-servico`, etc.) — por isso o projeto já inclui `public/404.html`, que redireciona de volta para a rota certa sem o visitante notar. Isto já está tratado; não precisas de fazer mais nada.
-
-Se mais tarde ligares um **domínio próprio** ao GitHub Pages, edita `.github/workflows/deploy.yml` e muda `--base=/${{ github.event.repository.name }}/` para `--base=/`.
+Detalhes do fluxo de deploy no GitHub Pages, incluindo como ligar um domínio próprio, estão comentados diretamente em `.github/workflows/deploy.yml`.
 
 ## Limitações conhecidas
 
 - O painel mostrado no hero é uma maquete visual, não um produto funcional
-- Site apenas em português (sem suporte multi-idioma)
-- Testado em Chromium automatizado; recomenda-se confirmação manual em Safari/Firefox e dispositivos físicos antes do lançamento
+- Site apenas em português, sem suporte multi-idioma
+- Testado sobretudo em Chromium; recomenda-se confirmação manual em Safari/Firefox e dispositivos físicos
+
+## Licença
+
+Projeto privado — todos os direitos reservados. Não licenciado para reutilização pública.
+
+---
+
+<div align="center">
+<sub>Construído com React, TypeScript e Vite.</sub>
+</div>
