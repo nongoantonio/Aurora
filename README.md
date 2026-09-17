@@ -2,12 +2,9 @@
 
 # Aurora Cloud
 
-**Landing page para uma plataforma SaaS de hospedagem, segurança e análise de tráfego.**
+**Landing page de uma plataforma fictícia de hospedagem, segurança e análise de tráfego.**
 
 [![Deploy](https://github.com/nongoantonio/Aurora/actions/workflows/deploy.yml/badge.svg)](https://github.com/nongoantonio/Aurora/actions/workflows/deploy.yml)
-![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white)
-![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)
-![Vite](https://img.shields.io/badge/Vite-8-646CFF?logo=vite&logoColor=white)
 ![License](https://img.shields.io/badge/license-proprietary-lightgrey)
 
 [**🔗 Ver o site publicado**](https://nongoantonio.github.io/Aurora/)
@@ -18,120 +15,49 @@
 
 ---
 
-## Índice
+## Sobre o projeto
 
-- [Funcionalidades](#-funcionalidades)
-- [Stack técnica](#️-stack-técnica)
-- [Começar](#-começar)
-- [Configuração antes de publicar](#️-configuração-antes-de-publicar)
-- [Estrutura do projeto](#-estrutura-do-projeto)
-- [Conteúdo a rever antes de publicar](#-conteúdo-a-rever-antes-de-publicar)
-- [Deploy](#-deploy)
-- [Limitações conhecidas](#limitações-conhecidas)
-- [Licença](#licença)
+A Aurora Cloud é a landing page de um produto imaginário de hospedagem e análise de negócio — pensada para responder a uma pergunta simples: *"o que faz alguém confiar o suficiente numa plataforma para lhe entregar o site do seu negócio?"*
 
-## ✨ Funcionalidades
+O objetivo nunca foi só "ter uma página bonita". Foi construir algo que se comportasse como um produto real: com identidade visual própria, um percurso de utilizador que faz sentido do topo ao rodapé, e botões que realmente fazem alguma coisa quando se clica neles — não apenas um mockup estático.
 
-- **Design responsivo** com modo claro/escuro, persistido e sincronizado com a preferência do sistema
-- **Animações on-scroll**, gráfico animado, marquee de logótipos e mockup de painel interativo
-- **Modal de inscrição** com validação de formulário, estado de carregamento e feedback de sucesso
-- **Integração com WhatsApp** — botão flutuante e links de contacto pré-preenchidos
-- **Captação de leads** pronta a ligar ao [Formspree](https://formspree.io) ou a qualquer backend próprio
-- **Google Analytics 4** opcional, carregado apenas se configurado
-- **Páginas legais** (Termos de Serviço e Política de Privacidade) com routing próprio
-- **SEO completo** — meta tags, Open Graph, Twitter Card, `sitemap.xml`, `robots.txt`
-- **Acessibilidade** — link "saltar para conteúdo", foco preso no modal, navegação por teclado
-- **CI/CD** — deploy automático para o GitHub Pages a cada `push` para `main`
+## Como o site foi desenvolvido
 
-## 🛠️ Stack técnica
+O projeto nasceu de um pedido simples — uma landing page inspirada num layout de referência — e foi crescendo por iteração, camada a camada:
 
-| Camada | Tecnologia |
-|---|---|
-| Framework | React 19 + TypeScript |
-| Build tool | Vite |
-| Routing | React Router DOM |
-| Estilos | CSS puro (variáveis nativas, sem framework) |
-| Ícones | SVG próprios (`src/components/Icons.tsx`) |
-| CI/CD | GitHub Actions → GitHub Pages |
+1. **Estrutura e primeira versão** — hero, secção de recursos, planos e FAQ, montados em React + TypeScript sobre Vite, com CSS próprio (sem frameworks de UI) para manter controlo total sobre o visual.
+2. **Identidade visual** — o logótipo "A" em gradiente violeta→ciano foi desenhado a partir de uma referência visual dada, depois simplificado para se manter legível a 16px (o tamanho de um separador de browser) e aplicado de forma consistente no favicon, navbar e rodapé.
+3. **Animações e sensação de "vivo"** — scroll reveals, um mockup de painel com gráfico a desenhar-se, badges flutuantes, e um botão de tema claro/escuro com transição suave em vez de um simples toggle binário.
+4. **De maquete a produto funcional** — foi aqui que o projeto mudou de figura: o botão "Começar agora" passou a abrir um modal real com validação de formulário; o WhatsApp ficou ligado a um número configurável; os links do rodapé deixaram de ser `#` mortos e passaram a fazer scroll, abrir o email, ou mostrar um aviso honesto de "ainda não disponível" em vez de fingir que funcionam.
+5. **Preparação para produção** — SEO (meta tags, Open Graph, sitemap), páginas legais de Termos e Privacidade, analytics opcional, e acessibilidade básica (navegação por teclado, foco preso no modal).
+6. **Deploy automatizado** — um pipeline de CI/CD via GitHub Actions publica o site no GitHub Pages a cada alteração enviada para `main`, incluindo o tratamento das rotas internas (um detalhe que o GitHub Pages não resolve sozinho, por não ser pensado para aplicações de página única).
 
-## 🚀 Começar
+## O que já está pronto
 
-```bash
-npm install
-npm run dev
-```
+- Modo claro/escuro persistido, sincronizado com a preferência do sistema
+- Modal de inscrição com validação, estado de carregamento e confirmação de sucesso
+- Botão de WhatsApp e links de contacto reais, prontos a configurar
+- Captação de leads pronta a ligar a um serviço real (Formspree ou backend próprio)
+- Páginas de Termos de Serviço e Política de Privacidade
+- SEO completo e imagem de pré-visualização para partilha em redes sociais
+- Deploy automático a cada `push`
 
-O site fica disponível em `http://localhost:5173`.
+## O que vamos melhorar
 
-```bash
-npm run build      # gera a pasta dist/ pronta para produção
-npm run preview    # pré-visualiza o build de produção localmente
-```
+Nem tudo está fechado — há decisões conscientes de deixar para depois:
 
-## ⚙️ Configuração antes de publicar
+- **Dados reais** — as estatísticas ("12.000 empresas", "99.9% uptime") e os depoimentos são placeholders de design; precisam de ser substituídos por números e citações verdadeiras antes de qualquer lançamento a sério.
+- **Backend de verdade** — hoje os pedidos de conta ficam guardados no navegador de quem visita; falta ligar isto a um serviço real (Formspree resolve em minutos) para os leads chegarem a algum lado.
+- **Revisão jurídica** — os Termos de Serviço e a Política de Privacidade são um ponto de partida, não um documento validado por um advogado.
+- **Produto por trás do formulário** — o painel mostrado no hero é uma maquete visual; não existe, ainda, uma aplicação real a processar contas.
+- **Alcance** — o site está só em português; não há estrutura preparada para outros idiomas.
+- **Testes manuais** — foi validado sobretudo com Chromium automatizado; vale a pena confirmar à mão em Safari, Firefox e num telemóvel físico antes de publicar a sério.
 
-Toda a configuração do negócio está centralizada em **`src/config.ts`**:
+## Stack técnica
 
-```ts
-export const WHATSAPP_NUMBER = '244900000000';   // trocar pelo número real
-export const CONTACT_EMAIL = 'contacto@aurora.co.ao';
-export const FORMSPREE_ENDPOINT = '';             // colar o endpoint do Formspree
-```
-
-Em desenvolvimento, a consola do browser avisa se algum destes valores ainda estiver por preencher.
-
-Para o Google Analytics 4 (opcional):
-
-```bash
-cp .env.example .env
-# preencher VITE_GA_MEASUREMENT_ID no .env
-```
-
-## 📁 Estrutura do projeto
-
-```
-src/
-├── pages/            # LandingPage, TermsPage, PrivacyPage (rotas)
-├── components/        # Componentes de UI (Hero, Pricing, FAQ, Footer, ...)
-├── context/            # Providers de Toast e do modal de inscrição
-├── lib/                # Envio de leads e analytics
-├── hooks/              # useScrollReveal (animações on-scroll)
-├── config.ts           # Dados de contacto e integrações — editar antes de publicar
-└── content.ts           # Estatísticas e depoimentos — substituir por dados reais
-```
-
-## 📝 Conteúdo a rever antes de publicar
-
-| Ficheiro | Motivo |
-|---|---|
-| `src/content.ts` | Estatísticas e depoimentos são placeholders de design, não factos reais |
-| `src/pages/TermsPage.tsx` / `PrivacyPage.tsx` | Modelo legal genérico — não substitui aconselhamento jurídico |
-| `index.html`, `robots.txt`, `sitemap.xml` | Trocar `https://www.aurora.co.ao` pelo domínio real |
-
-## 🌐 Deploy
-
-O routing da aplicação exige redirecionar todos os caminhos para `index.html`:
-
-| Plataforma | Configuração |
-|---|---|
-| **GitHub Pages** | Já automatizado via `.github/workflows/deploy.yml` — basta ativar em *Settings → Pages → Source → GitHub Actions* |
-| **Netlify** | Já incluído em `public/_redirects` |
-| **Vercel** | Já incluído em `vercel.json` |
-
-Detalhes do fluxo de deploy no GitHub Pages, incluindo como ligar um domínio próprio, estão comentados diretamente em `.github/workflows/deploy.yml`.
-
-## Limitações conhecidas
-
-- O painel mostrado no hero é uma maquete visual, não um produto funcional
-- Site apenas em português, sem suporte multi-idioma
-- Testado sobretudo em Chromium; recomenda-se confirmação manual em Safari/Firefox e dispositivos físicos
+React 19 + TypeScript, Vite, React Router, CSS puro. Deploy contínuo via GitHub Actions para o GitHub Pages.
 
 ## Licença
 
-Projeto privado — todos os direitos reservados. Não licenciado para reutilização pública.
+Projeto privado — todos os direitos reservados.
 
----
-
-<div align="center">
-<sub>Construído com React, TypeScript e Vite.</sub>
-</div>
